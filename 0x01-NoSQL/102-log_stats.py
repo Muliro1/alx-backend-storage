@@ -30,12 +30,12 @@ def log_stats():
     sorted_ips = logs_collection.aggregate(
         [{"$group": {"_id": "$ip", "count": {"$sum": 1}}},
          {"$sort": {"count": -1}}])
-    i = 0
-    for s in sorted_ips:
-        if i == 10:
+    j = 0
+    for s_ip in sorted_ips:
+        if j == 10:
             break
-        print(f"\t{s.get('_id')}: {s.get('count')}")
-        i += 1
+        print(f"\t{s_ip.get('_id')}: {s_ip.get('count')}")
+        j += 1
 
 
 if __name__ == "__main__":
