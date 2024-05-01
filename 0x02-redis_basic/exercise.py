@@ -8,7 +8,7 @@ from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
-    """doc doc class"""
+    """counting calls"""
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
@@ -21,13 +21,13 @@ def count_calls(method: Callable) -> Callable:
 
 
 def call_history(method: Callable) -> Callable:
-    """doc doc class"""
+    """call history"""
     inkey = method.__qualname__ + ":inputs"
     outkey = method.__qualname__ + ":outputs"
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """doc doc class"""
+        """python wrapper"""
         self._redis.rpush(inkey, str(args))
         res = method(self, *args, **kwargs)
         self._redis.rpush(outkey, str(res))
@@ -54,7 +54,7 @@ def replay(method: Callable) -> None:
 
 
 class Cache:
-    """doc doc class"""
+    """doc doc class cache"""
 
     def __init__(self):
         """doc doc method"""
