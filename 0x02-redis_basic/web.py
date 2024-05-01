@@ -22,9 +22,9 @@ def track_get_page(fn: Callable) -> Callable:
         cached_page = client.get(f'{url}')
         if cached_page:
             return cached_page.decode('utf-8')
-        response = fn(url)
-        client.set(f'{url}', response, 10)
-        return response
+        r = fn(url)
+        client.set(f'{url}', r, 10)
+        return r
     return wrapper
 
 
@@ -32,5 +32,5 @@ def track_get_page(fn: Callable) -> Callable:
 def get_page(url: str) -> str:
     """ Makes a http request to a given endpoint
     """
-    response = requests.get(url)
-    return response.text
+    r = requests.get(url)
+    return r.text

@@ -13,8 +13,8 @@ def count_calls(method: Callable) -> Callable:
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         """doc doc class"""
-        key = method.__qualname__
-        self._redis.incr(key)
+        k = method.__qualname__
+        self._redis.incr(k)
         return method(self, *args, **kwargs)
 
     return wrapper
@@ -65,9 +65,9 @@ class Cache:
     @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """doc doc method"""
-        keyx = str(uuid.uuid4())
-        self._redis.set(keyx, data)
-        return keyx
+        key_x = str(uuid.uuid4())
+        self._redis.set(key_x, data)
+        return key_x
 
     def get(
         self, key: str, fn: Optional[Callable] = None
