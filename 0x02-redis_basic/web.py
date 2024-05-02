@@ -23,8 +23,3 @@ def get_page(url: str) -> str:
     redis_store.incr(req_key)
 
     return result
-
-if __name__ == "__main__":
-    # Example usage
-    url = "http://slowwly.robertomurray.co.uk"
-    print(get_page(url))
