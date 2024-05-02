@@ -12,7 +12,7 @@ def track_get_page(fn: Callable) -> Callable:
     """ Decorator for get_page
     """
     @wraps(fn)
-    def wrapper(url: str) -> str:
+    def wrapper(url: str = "http://slowwly.robertomurray.co.uk") -> str:
         """ Wrapper that:
             - check whether a url's data is cached
             - tracks how many times get_page is called
@@ -29,7 +29,7 @@ def track_get_page(fn: Callable) -> Callable:
 
 
 @track_get_page
-def get_page(url: str) -> str:
+def get_page(url: str = "http://slowwly.robertomurray.co.uk") -> str:
     """ Makes a http request to a given endpoint
     """
     r = requests.get(url)
